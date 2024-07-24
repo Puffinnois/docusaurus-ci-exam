@@ -1,4 +1,4 @@
-name: Build Docusaurus site
+name: Build and Deploy Docusaurus site
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,9 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./my-website
 
       - name: Build Docusaurus site
         run: npm run build
+        working-directory: ./my-website
 
       - name: Upload built site to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
